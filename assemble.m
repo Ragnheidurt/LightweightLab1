@@ -32,7 +32,18 @@ M=zeros(ndof);
 Ksigma=zeros(ndof);
 
 
-
+k = 0;
+for i=1:nelem
+    ke = elk(le,EI,GJ);
+    ksigma = elksigma(le,P,I0,A);
+    qe = elq(le,q,qt);
+    K(k+1:k+6,k+1:k+6) = K(k+1:k+6,k+1:k+6)+ke;
+    Ksigma(k+1:k+6,k+1:k+6) = K(k+1:k+6,k+1:k+6) + ksigma;
+    Q(k+1:k+6) = Q(k+1:k+6)+qe;
+    k = k+3;
+end
+Ksigma
+Q
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Add concentrated loads
