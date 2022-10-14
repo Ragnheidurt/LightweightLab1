@@ -42,6 +42,7 @@ for i=1:nelem
     Q(k+1:k+6) = Q(k+1:k+6)+qe;
     k = k+3;
 end
+K
 Ksigma
 Q
 

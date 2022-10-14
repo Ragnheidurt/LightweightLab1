@@ -16,8 +16,7 @@ function [pb,ub]=buckle(Ks,Ksigmas,nnode,node_z);
 
 % Calculate eigenvalues and eigenvectors
 [ub,pb] = eig(Ks,-Ksigmas);
-ub
-pb
+
 
 % Split bending and twist modes into separate vectors
 bendingvectors =[];
@@ -46,8 +45,11 @@ else
 end
 
 % Normalise deflections, rotations and twist for plotting purposes (without risking to mix up signs or divide by zero)
-
-bendingnorm = bendingvectors./max(abs(bendingvectors))
+[i,k] = size(bendingvectors);
+for i = 1:k
+    bendingnorm2(i) = bendingvectors./max(abs(bendingvectors));
+end
+bendingnorm = bendingvectors./max(abs(bendingvectors));
 twistingnorm = twistingvectors./max(abs(twistingvectors));
 
 % Plot buckling modes
